@@ -57,7 +57,6 @@ for key, val in items[:10]:
 
 ```
 
-
 ## Optional `python-lzo`
 If `python-lzo` is not present, you' ll see "LZO compression support is not available" when running `readmdict`. Should this bother you, install `python-lzo`.
 
@@ -66,6 +65,5 @@ pip install python-lzo
 # or poerty add python-lzo
 ```
 
-When not successful in Windows, head to
+In Windows without a functioning C++ environment, you won't be able to install `python-lzo` via `pip`. Head to
 [https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo](https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo). Download and install `python-lzo` whl for your python version.
-
