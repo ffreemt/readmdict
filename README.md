@@ -51,7 +51,7 @@ print(headwods[:10])  # fisrt 10 in bytes format
 for hdw in headwods[:10]:
 	print(hdw.decode())   # fisrt 10 in string format
 
-items = [*MDX(filename).items()
+items = [*MDX(filename).items()]
 for key, val in items[:10]:
 	print(key.decode(), val.decode())  # first 10 entries
 
@@ -62,7 +62,7 @@ If `python-lzo` is not present, you' ll see "LZO compression support is not avai
 
 ```bash
 pip install python-lzo
-# or poerty add python-lzo
+# or poetry add python-lzo
 ```
 
 In Windows without a functioning C++ environment, you won't be able to install `python-lzo` via `pip`. Head to
