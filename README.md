@@ -55,6 +55,16 @@ items = [*MDX(filename).items()]
 for key, val in items[:10]:
 	print(key.decode(), val.decode())  # first 10 entries
 
+# read an mdd file
+filename = "some.mdd"
+items = MDD(filename).items()
+idx = 0
+for filename, content in items:
+  idx += 1
+  if idx > 10:
+    break
+	print(filename.decode(), content.decode())  # first 10 entries
+
 ```
 
 ## Optional `python-lzo`
