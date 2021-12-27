@@ -405,8 +405,8 @@ class MDict(object):
 
 
 class MDD(MDict):
-    """
-    MDict resource file format (*.MDD) reader.
+    """MDict resource file format (*.MDD) reader.
+
     >>> mdd = MDD('example.mdd')
     >>> len(mdd)
     208
@@ -417,7 +417,7 @@ class MDD(MDict):
         MDict.__init__(self, fname, encoding='UTF-16', passcode=passcode)
 
     def items(self):
-        """Return a generator which in turn produce tuples in the form of (filename, content)
+        """Return a generator which in turn produce tuples in the form of (filename, content).
         """
         return self._decode_record_block()
 
@@ -490,8 +490,8 @@ class MDD(MDict):
 
 
 class MDX(MDict):
-    """
-    MDict dictionary file format (*.MDD) reader.
+    """Return MDict dictionary file format (*.MDD) reader.
+
     >>> mdx = MDX('example.mdx')
     >>> len(mdx)
     42481

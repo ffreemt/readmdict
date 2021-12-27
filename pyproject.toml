@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "readmdict"
-version = "0.1.0"
+version = "0.1.1"
 description = "readmdict (simple repacking of readmdict in mdict-analysis)"
 authors = ["freemt"]
 license = "MIT"

@@ -4,6 +4,17 @@ Read mdx/mdd files (repacking of readmdict from mdict-analysis)
 
 This is a repacking of `readmdict.py` in [https://github.com/csarron/mdict-analysis](https://github.com/csarron/mdict-analysis). All credit goes to the original author(s).
 
+## Prerequisite `python-lzo`
+If `python-lzo` is not present, you' ll see "LZO compression support is not available" when running `readmdict`. 
+
+```bash
+pip install python-lzo
+# or poetry add python-lzo
+```
+
+In Windows without a functioning C++ environment, you won't be able to install `python-lzo` via `pip`. Head to
+[https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo](https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo). Download and install `python-lzo` whl for your python version.
+
 ## Installation
 ```bash
 pip install readmdict
@@ -46,9 +57,9 @@ python -m readmdict -h
 from readmdict import MDX, MDD
 
 filename = "some.mdx"
-headwords = [*MDX(filename)]
-print(headwods[:10])  # fisrt 10 in bytes format
-for hdw in headwods[:10]:
+headwords = [*MDX(filename).header]
+print(headwords[:10])  # fisrt 10 in bytes format
+for hdw in headwords[:10]:
 	print(hdw.decode())   # fisrt 10 in string format
 
 items = [*MDX(filename).items()]
@@ -66,14 +77,3 @@ for filename, content in items:
 	print(filename.decode(), content.decode())  # first 10 entries
 
 ```
-
-## Optional `python-lzo`
-If `python-lzo` is not present, you' ll see "LZO compression support is not available" when running `readmdict`. Should this bother you, install `python-lzo`.
-
-```bash
-pip install python-lzo
-# or poetry add python-lzo
-```
-
-In Windows without a functioning C++ environment, you won't be able to install `python-lzo` via `pip`. Head to
-[https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo](https://www.lfd.uci.edu/~gohlke/pythonlibs/#python-lzo). Download and install `python-lzo` whl for your python version.

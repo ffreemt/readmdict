@@ -66,7 +66,7 @@ def main():
         print('======== %s ========' % bfname)
         print('  Number of Entries : %d' % len(mdx))
         for key, value in mdx.header.items():
-            print('  %s : %s' % (key, value))
+            print('  %s : %s' % (key.decode(), value.decode()))
     else:
         mdx = None
 
