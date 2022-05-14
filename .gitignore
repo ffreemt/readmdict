@@ -1,4 +1,4 @@
 .venv
-readmdict\__pycache__
+**/__pycache__
 dist
 readmdict.egg-info
