@@ -1,10 +1,11 @@
 """Init."""
 try:
-    import lzo
+    import lzo  # noqa
 except ModuleNotFoundError:
-    raise SystemExit("\n\tPlease install python-lzo first. This packagewont work without lzo.")
-from .readmdict import MDX, MDD
-
+    raise SystemExit(
+        "\n\tPlease install python-lzo "
+        " first. This packagewont work without lzo.")
+from .readmdict import MDD, MDX
 
 __version__ = "0.1.1"
 VERSION = __version__.split(".")

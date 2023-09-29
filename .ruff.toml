@@ -1,0 +1,17 @@
+# Assume Python 3.10.
+target-version = "py310"
+# Decrease the maximum line length to 79 characters.
+line-length = 300
+
+# pyflakes, pycodestyle, isort
+# flake8 YTT, pydocstyle D, pylint PLC
+select = ["F", "E", "W", "I001", "YTT", "D", "PLC"]
+# select = ["ALL"]
+
+# D103 Missing docstring in public function
+# D101 Missing docstring in public class
+# `multi-line-summary-first-line` (D212)
+# `one-blank-line-before-class` (D203)
+extend-ignore = ["D103", "D101", "D212", "D203"]
+
+exclude = [".venv"]

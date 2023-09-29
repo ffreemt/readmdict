@@ -1,15 +1,16 @@
 """Main."""
-import sys
-import os
-import os.path
 import argparse
 import codecs
+import os
+import os.path
+import sys
 
 from .readmdict import MDD, MDX, unicode
 
 
 def main():
-    """Main.
+    """
+    Run main.
 
     From readmict.py
     """
@@ -17,11 +18,11 @@ def main():
     def passcode(s):
         try:
             regcode, userid = s.split(',')
-        except:
+        except Exception:
             raise argparse.ArgumentTypeError("Passcode must be regcode,userid")
         try:
             regcode = codecs.decode(regcode, 'hex')
-        except:
+        except Exception:
             raise argparse.ArgumentTypeError("regcode must be a 32 bytes hexadecimal string")
         return regcode, userid
 

@@ -1,3 +1,4 @@
+"""Repack readmdict."""
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # readmdict.py
@@ -40,9 +41,7 @@ if sys.hexversion >= 0x03000000:
 
 
 def _unescape_entities(text):
-    """
-    unescape offending tags < > " &
-    """
+    """Unescape offending tags < > " &."""
     text = text.replace(b'&lt;', b'<')
     text = text.replace(b'&gt;', b'>')
     text = text.replace(b'&quot;', b'"')
@@ -89,9 +88,12 @@ def _decrypt_regcode_by_email(reg_code, email):
 class MDict(object):
     """
     Base class which reads in header and key block.
+
     It has no public methods and serves only as code sharing base class.
     """
+
     def __init__(self, fname, encoding='', passcode=None):
+        """Init."""
         self._fname = fname
         self._encoding = encoding.upper()
         self._passcode = passcode
@@ -99,7 +101,7 @@ class MDict(object):
         self.header = self._read_header()
         try:
             self._key_list = self._read_keys()
-        except:
+        except Exception:
             print("Try Brutal Force on Encrypted Key Blocks")
             self._key_list = self._read_keys_brutal()
 
@@ -110,18 +112,14 @@ class MDict(object):
         return self.keys()
 
     def keys(self):
-        """
-        Return an iterator over dictionary keys.
-        """
+        """Return an iterator over dictionary keys."""
         return (key_value for key_id, key_value in self._key_list)
 
     def _read_number(self, f):
         return unpack(self._number_format, f.read(self._number_width))[0]
 
     def _parse_header(self, header):
-        """
-        extract attributes from <Dict attr="value" ... >
-        """
+        """Extract attributes from <Dict attr="value" ... >."""
         taglist = re.findall(b'(\w+)="(.*?)"', header, re.DOTALL)
         tagdict = {}
         for key, value in taglist:
@@ -405,7 +403,8 @@ class MDict(object):
 
 
 class MDD(MDict):
-    """MDict resource file format (*.MDD) reader.
+    """
+    MDict resource file format (*.MDD) reader.
 
     >>> mdd = MDD('example.mdd')
     >>> len(mdd)
@@ -413,12 +412,12 @@ class MDD(MDict):
     >>> for filename,content in mdd.items():
     ... print filename, content[:10]
     """
+
     def __init__(self, fname, passcode=None):
         MDict.__init__(self, fname, encoding='UTF-16', passcode=passcode)
 
     def items(self):
-        """Return a generator which in turn produce tuples in the form of (filename, content).
-        """
+        """Return a generator which in turn produce tuples in the form of (filename, content)."""
         return self._decode_record_block()
 
     def _decode_record_block(self):
@@ -490,7 +489,8 @@ class MDD(MDict):
 
 
 class MDX(MDict):
-    """Return MDict dictionary file format (*.MDD) reader.
+    """
+    Return MDict dictionary file format (*.MDD) reader.
 
     >>> mdx = MDX('example.mdx')
     >>> len(mdx)
@@ -498,13 +498,13 @@ class MDX(MDict):
     >>> for key,value in mdx.items():
     ... print key, value[:10]
     """
+
     def __init__(self, fname, encoding='', substyle=False, passcode=None):
         MDict.__init__(self, fname, encoding, passcode)
         self._substyle = substyle
 
     def items(self):
-        """Return a generator which in turn produce tuples in the form of (key, value)
-        """
+        """Return a generator which in turn produce tuples in the form of (key, value)."""
         return self._decode_record_block()
 
     def _substitute_stylesheet(self, txt):
@@ -607,11 +607,11 @@ if __name__ == '__main__':
     def passcode(s):
         try:
             regcode, userid = s.split(',')
-        except:
+        except Exception:
             raise argparse.ArgumentTypeError("Passcode must be regcode,userid")
         try:
             regcode = codecs.decode(regcode, 'hex')
-        except:
+        except Exception:
             raise argparse.ArgumentTypeError("regcode must be a 32 bytes hexadecimal string")
         return regcode, userid
 
